@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/motorola/hiphi
+DEVICE_PATH := device/motorola/lynkco
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
@@ -50,8 +50,8 @@ TARGET_USES_REMOTEPROC := true
 TARGET_SCREEN_DENSITY := 400
 
 # Init
-TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_hiphi
-TARGET_RECOVERY_DEVICE_MODULES := libinit_hiphi
+TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_lynkco
+TARGET_RECOVERY_DEVICE_MODULES := libinit_lynkco
 
 # Kernel
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
@@ -60,7 +60,6 @@ BOARD_BOOTIMG_HEADER_VERSION := 4
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_RAMDISK_USE_LZ4 := true
-BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 
 # Partitions
@@ -122,13 +121,11 @@ TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 BOARD_USES_QCOM_FBE_DECRYPTION := true
 TW_USE_FSCRYPT_POLICY := 2
+TW_FIX_DECRYPTION_ON_DATA_MEDIA := true
 
 # TWRP Configuration
-TW_DEVICE_VERSION := 2-12
+TW_DEVICE_VERSION := lynkco
 TW_THEME := portrait_hdpi
-TW_Y_OFFSET := 85
-TW_H_OFFSET := -85
-TW_EXTRA_LANGUAGES := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_INCLUDE_REPACKTOOLS := true
 TW_INCLUDE_RESETPROP := true
@@ -137,16 +134,25 @@ TW_INCLUDE_NTFS_3G := true
 TW_BACKUP_EXCLUSIONS := /data/fonts
 TW_NO_SCREEN_BLANK := true
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
-TW_MAX_BRIGHTNESS := 2047
-TW_DEFAULT_BRIGHTNESS := 1024
-TW_FRAMERATE := 60
+TW_MAX_BRIGHTNESS := 16380
+TW_DEFAULT_BRIGHTNESS := 16380
+TW_FRAMERATE := 120
 TW_HAS_EDL_MODE := true
 TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone39/temp
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
 TW_SUPPORT_INPUT_AIDL_HAPTICS := true
 TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
+TW_INCLUDE_FASTBOOTD := true
+TW_NO_FLASH_CURRENT_TWRP := true
+TW_EXCLUDE_APEX := true
+TW_USE_SERIALNO_PROPERTY_FOR_DEVICE_ID := true
 
 # Debug flags
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
+
+# Namespace definition for librecovery_updater
+SOONG_CONFIG_NAMESPACES += ufsbsg
+SOONG_CONFIG_ufsbsg += ufsframework
+SOONG_CONFIG_ufsbsg_ufsframework := bsg

@@ -1,24 +1,24 @@
-Device configuration for Motorola Edge 30 Pro / Edge Plus (2022) / Edge Plus 5G UW / Edge X30 (hiphi/hiphic/hiphid)
+Device configuration for Motorola Razr 40 / Razr (2023) (lynkco)
 =========================================
 
-The Motorola Edge 30 Pro / Edge Plus (2022) / Edge Plus 5G UW / Edge X30 (codenamed _"hiphi/hiphic/hiphid"_) is a flagship smartphone from Motorola mobility announced in December 2021.
+The Motorola Razr 40 / Razr (2023) (codenamed _"lynkco"_) is a mid-range smartphone from Motorola Mobility announced in June 2023.
 
 ## Device specifications
 
 Basic   | Spec Sheet
 -------:|:-------------------------
-SoC     | Qualcomm SM8450 Snapdragon 8 Gen 1 (4 nm)
-CPU     | Octa-core (1x3.0 GHz Kryo 780 & 3x2.5 GHz Kryo 780 & 4x1.8GHz Kryo 780)
-GPU     | Adreno 730
+SoC     | Qualcomm SM7450-AB Snapdragon 7 Gen 1 (4 nm)
+CPU     | Octa-core (1x2.4 GHz Cortex-A710 & 3x2.36 GHz Cortex-A710 & 4x1.8 GHz Cortex-A510)
+GPU     | Adreno 644
 Memory  | 8/12 GB RAM (LPDDR5)
-Shipped Android Version | 12.0, My UX 3.0 (Global) / MY UI 3.0 (China)
+Shipped Android Version | 13.0, My UX 3.0 (Global) / MY UI 3.0 (China)
 Storage | 128/256/512 GB (UFS 3.1)
-Battery | Non-removable Li-Po 4800 mAh (Global) / 5000 mAh (China) battery
-Display | 2400 x 1080 pixels, 6.18 inches (~403 ppi density)
-Camera  | 50MP (Main) + 50MP (Ultra-wide) + 2MP (Depth) + 60MP (Selfie)
+Battery | Non-removable Li-Po 4200 mAh (Global) / 5000 mAh (China) battery
+Display | 2640 x 1080 pixels, 6.9 inches (~413 ppi density), Foldable LTPO AMOLED, 1B colors, 144Hz, HDR10+, 1400 nits (peak)
+Camera  | 64MP (Wide) + 13MP (Ultra-wide) + 32MP (Selfie)
 
 ## Device picture
-![Motorola Edge 30 Pro / Edge Plus (2022) / Edge Plus 5G UW / Edge X30](https://i.imgur.com/B0cNJ79.png)
+![Motorola Razr 40 (2023)](https://fdn2.gsmarena.com/vv/pics/motorola/motorola-razr-40-2.jpg)
 
 # Status
 Current state of features:
@@ -43,11 +43,15 @@ Current state of features:
 - [x] Screenshot
 - [x] Advanced features
 
+# Note
+In order to `fastboot boot` the compiled image, swap prebuilt/kernel with prebuilt/kernel-real.
+This is due to a bootloader quirk where `fastboot flash` uses the kernel from boot partition, while `fastboot boot` expects a bundled kernel in recoveryimage.
+
 # Building
 ```bash
 export ALLOW_MISSING_DEPENDENCIES=true
 source build/envsetup.sh
-lunch twrp_hiphi-eng
+lunch twrp_lynkco-eng
 mka recoveryimage -j$(nproc --all)
 ```
 

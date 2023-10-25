@@ -15,14 +15,14 @@
 //
 
 cc_library {
-    name: "bootctrl.moto_sm8450",
+    name: "bootctrl.moto_sm7450",
     defaults: ["bootctrl_hal_defaults"],
-    static_libs: ["libgptutils.moto_sm8450"],
+    static_libs: ["libgptutils.moto_sm7450"],
 }
 
 cc_library_shared {
     name: "android.hardware.boot@1.2-impl-qti",
     stem: "android.hardware.boot@1.0-impl-1.2-qti",
     defaults: ["android.hardware.boot@1.2-impl-qti_defaults"],
-    static_libs: ["libgptutils.moto_sm8450"],
+    static_libs: ["libgptutils.moto_sm7450"],
 }
