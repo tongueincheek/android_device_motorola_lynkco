@@ -13,6 +13,7 @@ if [ "$is_fastboot" != "running" ]; then
         insmod /vendor_dlkm/lib/modules/stmicro_mmi.ko
         insmod /vendor_dlkm/lib/modules/goodix_brl_mmi.ko
         insmod /vendor_dlkm/lib/modules/sx937x_sar.ko
+        insmod /vendor_dlkm/lib/modules/sx937x_multi.ko
         insmod /vendor_dlkm/lib/modules/bm_adsp_ulog.ko
         insmod /vendor_dlkm/lib/modules/qti_glink_charger.ko
         insmod /vendor_dlkm/lib/modules/qpnp_adaptive_charge.ko
